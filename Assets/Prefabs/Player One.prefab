@@ -154,7 +154,7 @@ MonoBehaviour:
   right: 100
   jump: 32
   groundCheckPoint: {fileID: 8953119531085034910}
-  groundCheckRadius: 0.2
+  groundCheckRadius: 0.7
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1
