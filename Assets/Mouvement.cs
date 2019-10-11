@@ -11,6 +11,8 @@ public class Mouvement : MonoBehaviour
 
     public KeyCode left;
     public KeyCode right;
+    public KeyCode up;
+    public KeyCode down;
     public KeyCode jump;
 
     private Rigidbody2D _rigidbody;
@@ -24,28 +26,30 @@ public class Mouvement : MonoBehaviour
     public GameObject playerName;
     private GameObject text;
 
-    public GameObject cursorBlue;
-    private GameObject curs;
+    private float inputVertical;
+    public float distance;
+    public LayerMask whatIsLadder;
+    private bool isClimbing;
+    private float gravity;
 
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        gravity = _rigidbody.gravityScale;
 
         //Player name follow
         text = Instantiate(playerName, new Vector3(transform.position.x - 1, transform.position.y + 2), Quaternion.Euler(0,0,0), transform);
         text.GetComponent<TextMesh>().text = pName;
-
-        //Blue player cursor
-        curs = Instantiate(cursorBlue, new Vector3(transform.position.x, transform.position.y + 3), Quaternion.identity, transform);
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+        //isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapBox(groundCheckPoint.position, new Vector2(0.7f, 0.1f), 0, whatIsGround);
         if (Input.GetKey(left))
         {
             _rigidbody.velocity = new Vector2(-speed, _rigidbody.velocity.y);
@@ -80,10 +84,40 @@ public class Mouvement : MonoBehaviour
 
         _animator.SetFloat("Speed", Mathf.Abs(_rigidbody.velocity.x));
         _animator.SetBool("Grounded", isGrounded);
-        
 
-        
 
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, whatIsLadder);
+
+        if (hitInfo.collider != null)
+        {
+            if (Input.GetKey(up))
+            {
+                isClimbing = true;
+
+            }
+            else
+            {
+                isClimbing = false;
+            }
+        }
+
+        if (isClimbing && hitInfo.collider != null)
+        {
+            inputVertical = 1;
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, inputVertical * speed);
+            _rigidbody.gravityScale = 0;
+        }
+        else
+        {
+            _rigidbody.gravityScale = gravity;
+        }
     }
+
+    private bool IsGrounded()
+    {
+        int layerMask = LayerMask.GetMask("Ground");
+        return Physics2D.Raycast(transform.position, -Vector3.up, 0.06f, layerMask);
+    }
+
 
 }
