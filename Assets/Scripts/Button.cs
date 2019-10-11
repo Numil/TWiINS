@@ -5,28 +5,38 @@ using UnityEngine;
 public class Button : MonoBehaviour
 {
     public SpriteRenderer[] door = new SpriteRenderer[2];
+    BoxCollider2D boxCollider;
     private Animator animator;
     // Update is called once per frame
     void Awake()
     {
+        boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         animator.SetBool("IsTriggered", false);
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        foreach(SpriteRenderer sr in door)
+        if (boxCollider.isTrigger)
         {
-            sr.enabled = true;
+            foreach (SpriteRenderer sr in door)
+            {
+                sr.enabled = true;
+            }
+            animator.SetBool("IsTriggered", true);
         }
-        animator.SetBool("IsTriggered", true);
     }
-    private void OnCollisionExit2D(Collision2D collision)
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        foreach (SpriteRenderer sr in door)
+        if (boxCollider.isTrigger)
         {
-            sr.enabled = false;
+            foreach (SpriteRenderer sr in door)
+            {
+                sr.enabled = false;
+            }
+            animator.SetBool("IsTriggered", false);
+
         }
-        animator.SetBool("IsTriggered", false);
     }
 }
