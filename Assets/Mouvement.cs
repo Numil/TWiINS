@@ -14,6 +14,7 @@ public class Mouvement : MonoBehaviour
     public KeyCode up;
     public KeyCode down;
     public KeyCode jump;
+    public KeyCode activate;
 
     private Rigidbody2D _rigidbody;
     private Animator _animator;
@@ -25,6 +26,10 @@ public class Mouvement : MonoBehaviour
 
     public GameObject playerName;
     private GameObject text;
+
+    public float widthGroundDetector = 0.7f;
+
+    public Lever lever;
 
     private float inputVertical;
     public float distance;
@@ -49,7 +54,7 @@ public class Mouvement : MonoBehaviour
     void Update()
     {
         //isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
-        isGrounded = Physics2D.OverlapBox(groundCheckPoint.position, new Vector2(0.7f, 0.1f), 0, whatIsGround);
+        isGrounded = Physics2D.OverlapBox(groundCheckPoint.position, new Vector2(widthGroundDetector, 0.1f), 0, whatIsGround);
         if (Input.GetKey(left))
         {
             _rigidbody.velocity = new Vector2(-speed, _rigidbody.velocity.y);
