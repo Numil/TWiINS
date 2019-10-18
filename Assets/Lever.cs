@@ -9,14 +9,33 @@ public class Lever : MonoBehaviour
     public Canvas canvas;
     public Text text;
     private Text shownText = null;
-    // Update is called once per frame
-    void Update()
+    public bool isActivated;
+    private bool isTriggered;
+    private Collider2D collider2D;
+    private Animator animator;
+
+    private void Awake()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void LateUpdate()
     {
+        if (isTriggered)
+        {
+            if (Input.GetKeyDown(collider2D.GetComponent<Mouvement>().activate))
+            {
+
+                isActivated = !isActivated;
+                animator.SetBool("IsLeverOn", isActivated);
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        isTriggered = true;
+        collider2D = collision;
         if(shownText == null)
         {
             shownText = Instantiate(text, new Vector3(transform.position.x, transform.position.y +1, transform.position.z), new Quaternion(), canvas.transform);
@@ -25,12 +44,13 @@ public class Lever : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        isTriggered = false;
         if(shownText != null)
         {
-
             Destroy(shownText.gameObject);
             shownText = null;
         }
 
     }
+
 }

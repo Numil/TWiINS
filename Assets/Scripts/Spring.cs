@@ -20,7 +20,6 @@ public class Spring : MonoBehaviour
         {
             Rigidbody2D _rigidbody = collision.collider.gameObject.GetComponent<Rigidbody2D>();
             _rigidbody.velocity = new Vector2(boxCollider.transform.up.x*20, boxCollider.transform.up.y*20); 
-            Debug.Log(collision.collider.gameObject.GetComponent<Rigidbody2D>().velocity);
             animator.SetBool("IsUnloaded", true);
             StartCoroutine(ReenableSpring());
         }
