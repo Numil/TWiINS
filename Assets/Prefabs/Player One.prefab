@@ -159,6 +159,7 @@ MonoBehaviour:
   up: 122
   down: 115
   jump: 32
+  activate: 0
   groundCheckPoint: {fileID: 8953119531085034910}
   groundCheckRadius: 0.2
   whatIsGround:
@@ -166,6 +167,8 @@ MonoBehaviour:
     m_Bits: 1
   playerName: {fileID: 3508758714053039342, guid: 07c098984ba335b4c8ce7edec56909c2,
     type: 3}
+  widthGroundDetector: 0.3
+  lever: {fileID: 0}
   distance: 5
   whatIsLadder:
     serializedVersion: 2
