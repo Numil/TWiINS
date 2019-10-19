@@ -45,7 +45,7 @@ public class Mouvement : MonoBehaviour
         gravity = _rigidbody.gravityScale;
 
         //Player name follow
-        text = Instantiate(playerName, new Vector3(transform.position.x - 1, transform.position.y + 2), Quaternion.Euler(0,0,0), transform);
+        text = Instantiate(playerName, new Vector3(transform.position.x, transform.position.y + 1), Quaternion.Euler(0,0,0), transform);
         text.GetComponent<TextMesh>().text = pName;
         
     }
@@ -78,13 +78,13 @@ public class Mouvement : MonoBehaviour
         {          
             transform.localRotation = Quaternion.Euler(0, 180, 0);
             text.transform.localRotation = Quaternion.Euler(0, -180, 0);
-            text.transform.position = new Vector3(transform.position.x - 1, transform.position.y + 2);
+            text.transform.position = new Vector3(transform.position.x, transform.position.y + 1);
         }
         else if(_rigidbody.velocity.x > 0)
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
             text.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            text.transform.position = new Vector3(transform.position.x - 1, transform.position.y + 2);
+            text.transform.position = new Vector3(transform.position.x, transform.position.y + 1);
         }
 
         _animator.SetFloat("Speed", Mathf.Abs(_rigidbody.velocity.x));
