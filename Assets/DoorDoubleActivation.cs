@@ -5,43 +5,63 @@ using UnityEngine;
 public class DoorDoubleActivation : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject[] Levers;
+    public GameObject[] levers;
     public GameObject[] buttons;
-    public SpriteRenderer[] openedDoor;
+    public GameObject[] doorParts;
     public bool oneOrAnother =false;
-    public SpriteRenderer[] closedDoor;
+    Animator[] doorAnimators;
+    BoxCollider2D[] doorColliders;
+
+
+    private void Awake()
+    {
+        List<Animator> listAnim = new List<Animator>();
+        List<BoxCollider2D> listCollider = new List<BoxCollider2D>();
+        foreach (GameObject door in doorParts)
+        {
+            listAnim.Add(door.GetComponent<Animator>());
+            listCollider.Add(door.GetComponent<BoxCollider2D>());
+        }
+        doorAnimators = listAnim.ToArray();
+        doorColliders = listCollider.ToArray();
+    }
 
     private void Update()
     {
 
-        int countPressedButtons = 0;
+        int countActivated = 0;
+
         foreach (GameObject button in buttons)
         {
             if (button.GetComponent<SwitchActivated>().isSwitchOn)
             {
-                countPressedButtons++;
+                countActivated++;
             }
         }
-        if ((countPressedButtons == buttons.Length && !oneOrAnother) || (countPressedButtons != 0 && oneOrAnother))
+
+        foreach (GameObject lever in levers)
         {
-            foreach (SpriteRenderer door in openedDoor)
+            if (lever.GetComponent<Lever>().isActivated)
             {
-                door.gameObject.SetActive(true);
-            }
-            foreach (SpriteRenderer door in closedDoor)
-            {
-                door.gameObject.SetActive(false);
+                countActivated++;
             }
         }
-        else if (openedDoor[0].enabled != false)
+
+
+        if ((countActivated == buttons.Length + levers.Length && !oneOrAnother) || (countActivated != 0 && oneOrAnother))
         {
-            foreach (SpriteRenderer door in openedDoor)
+            for (int i = 0; i < doorAnimators.Length; i++)
             {
-                door.gameObject.SetActive(false);
+                doorAnimators[i].SetBool("DoorIsOpen", true);
+                doorColliders[i].enabled = false;
             }
-            foreach (SpriteRenderer door in closedDoor)
+        }
+        else
+        {
+            for (int i = 0; i < doorAnimators.Length; i++)
             {
-                door.gameObject.SetActive(true);
+                doorAnimators[i].SetBool("DoorIsOpen", false);
+                doorColliders[i].enabled = true;
             }
         }
 
