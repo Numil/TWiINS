@@ -20,6 +20,13 @@ public class GameMenu : MonoBehaviour
 
     public void ShowGameMenu()
     {
-        gameMenu.SetActive(true);
+        if (gameMenu.activeSelf)
+        {
+            gameMenu.SetActive(false);
+        }
+        else
+        {
+            gameMenu.SetActive(true);
+        }      
     }
 }
