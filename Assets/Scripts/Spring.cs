@@ -6,11 +6,13 @@ public class Spring : MonoBehaviour
 {
     Animator animator;
     BoxCollider2D boxCollider;
+    AudioSource audio;
     // Start is called before the first frame update
     void Awake()
     {
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+        audio = GetComponent<AudioSource>();
     }
 
 
@@ -22,6 +24,7 @@ public class Spring : MonoBehaviour
             _rigidbody.velocity = new Vector2(boxCollider.transform.up.x*20, boxCollider.transform.up.y*20); 
             animator.SetBool("IsUnloaded", true);
             StartCoroutine(ReenableSpring());
+            audio.Play();
         }
     }
 

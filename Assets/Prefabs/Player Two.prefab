@@ -126,16 +126,14 @@ MonoBehaviour:
   left: 276
   right: 275
   up: 273
-  down: 274
-  jump: 303
-  activate: 0
+  down: 0
+  jump: 273
+  activate: 274
   groundCheckPoint: {fileID: 7143770367372123588}
   groundCheckRadius: 0.2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1
-  playerName: {fileID: 3508758714053039342, guid: 07c098984ba335b4c8ce7edec56909c2,
-    type: 3}
   widthGroundDetector: 0.7
   lever: {fileID: 0}
   distance: 5

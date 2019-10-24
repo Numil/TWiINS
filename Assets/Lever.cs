@@ -38,7 +38,7 @@ public class Lever : MonoBehaviour
         collider2D = collision;
         if(shownText == null)
         {
-            shownText = Instantiate(text, new Vector3(transform.position.x, transform.position.y +1, transform.position.z), new Quaternion(), canvas.transform);
+            shownText = Instantiate(text, new Vector3(transform.position.x, transform.position.y +1, transform.position.z), new Quaternion());
         }
     }
 

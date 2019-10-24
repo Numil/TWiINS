@@ -9,9 +9,10 @@ public class DoorDoubleActivation : MonoBehaviour
     public GameObject[] buttons;
     public GameObject[] doorParts;
     public bool oneOrAnother =false;
+    public bool alwaysOn;
     Animator[] doorAnimators;
     BoxCollider2D[] doorColliders;
-
+    bool isOn = false;
 
     private void Awake()
     {
@@ -58,10 +59,13 @@ public class DoorDoubleActivation : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < doorAnimators.Length; i++)
+            if (!alwaysOn)
             {
-                doorAnimators[i].SetBool("DoorIsOpen", false);
-                doorColliders[i].enabled = true;
+                for (int i = 0; i < doorAnimators.Length; i++)
+                {
+                    doorAnimators[i].SetBool("DoorIsOpen", false);
+                    doorColliders[i].enabled = true;
+                }
             }
         }
 
