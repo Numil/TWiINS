@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public GameObject menu;
+    public GameObject commandMenu;
 
     public void PlayLevel1()
     {
@@ -19,7 +20,14 @@ public class Menu : MonoBehaviour
 
     public void ShowCommands()
     {
+        menu.SetActive(false);
+        commandMenu.SetActive(true);
+    }
 
+    public void HideCommands()
+    {
+        menu.SetActive(true);
+        commandMenu.SetActive(false);
     }
 
     public void ExitGame()
