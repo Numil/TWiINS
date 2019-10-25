@@ -16,12 +16,12 @@ public class Spring : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player")
         {
-            Rigidbody2D _rigidbody = collision.collider.gameObject.GetComponent<Rigidbody2D>();
-            _rigidbody.velocity = new Vector2(boxCollider.transform.up.x*20, boxCollider.transform.up.y*20); 
+            Rigidbody2D _rigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
+            _rigidbody.velocity = new Vector2(boxCollider.transform.up.x * 20, boxCollider.transform.up.y * 20);
             animator.SetBool("IsUnloaded", true);
             StartCoroutine(ReenableSpring());
             audio.Play();
