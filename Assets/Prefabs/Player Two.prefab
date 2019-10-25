@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  jumpforce: 15
+  jumpforce: 17
   pName: P2
   left: 276
   right: 275
