@@ -30,6 +30,7 @@ public class Mouvement : MonoBehaviour
     public LayerMask whatIsLadder;
     private bool isClimbing;
     private float gravity;
+    private bool canClimb = false;
 
     // Start is called before the first frame update
     void Start()
@@ -80,20 +81,17 @@ public class Mouvement : MonoBehaviour
 
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, whatIsLadder);
 
-        if (hitInfo.collider != null)
+        if (Input.GetKey(up) && canClimb)
         {
-            if (Input.GetKey(up))
-            {
-                isClimbing = true;
+            isClimbing = true;
 
-            }
-            else
-            {
-                isClimbing = false;
-            }
+        }
+        else
+        {
+            isClimbing = false;
         }
 
-        if (isClimbing && hitInfo.collider != null)
+        if (isClimbing)
         {
             inputVertical = 1;
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, inputVertical * speed);
@@ -105,11 +103,26 @@ public class Mouvement : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 9)
+        {
+
+            canClimb = true;
+
+        }
+        else
+        {
+            canClimb = false;
+        }
+    }
+
     private bool IsGrounded()
     {
         int layerMask = LayerMask.GetMask("Ground");
         return Physics2D.Raycast(transform.position, -Vector3.up, 0.06f, layerMask);
     }
 
+    
 
 }
