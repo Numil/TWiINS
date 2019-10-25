@@ -11,7 +11,7 @@ public class Lever : MonoBehaviour
     private Text shownText = null;
     public bool isActivated;
     private bool isTriggered;
-    private Collider2D collider2D;
+    private Collider2D colliders;
     private Animator animator;
 
     private void Awake()
@@ -23,9 +23,8 @@ public class Lever : MonoBehaviour
     {
         if (isTriggered)
         {
-            if (Input.GetKeyDown(collider2D.GetComponent<Mouvement>().activate))
+            if (Input.GetKeyDown(colliders.GetComponent<Mouvement>().activate))
             {
-
                 isActivated = !isActivated;
                 animator.SetBool("IsLeverOn", isActivated);
             }
@@ -35,10 +34,10 @@ public class Lever : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         isTriggered = true;
-        collider2D = collision;
+        colliders = collision;
         if(shownText == null)
         {
-            shownText = Instantiate(text, new Vector3(transform.position.x, transform.position.y +1, transform.position.z), new Quaternion());
+            shownText = Instantiate(text, new Vector3(transform.position.x, transform.position.y +1, transform.position.z), new Quaternion(), canvas.transform);
         }
     }
 

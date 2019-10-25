@@ -157,7 +157,7 @@ MonoBehaviour:
   left: 113
   right: 100
   up: 122
-  down: 0
+  down: 115
   jump: 122
   activate: 115
   groundCheckPoint: {fileID: 8953119531085034910}
