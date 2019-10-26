@@ -12,7 +12,6 @@ public class DoorDoubleActivation : MonoBehaviour
     public bool alwaysOn;
     Animator[] doorAnimators;
     BoxCollider2D[] doorColliders;
-    bool isOn = false;
 
     private void Awake()
     {

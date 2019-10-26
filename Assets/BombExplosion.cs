@@ -8,7 +8,6 @@ public class BombExplosion : MonoBehaviour
 
 
     public GameObject[] buttons;
-    private bool alreadyActivated = false;
     public GameObject explosion;
 
     private void Update()
@@ -25,7 +24,6 @@ public class BombExplosion : MonoBehaviour
         if (countActivated == buttons.Length)
         {
             Instantiate(explosion, transform.position, new Quaternion());
-            alreadyActivated = true;
             Destroy(gameObject);
         }
         
