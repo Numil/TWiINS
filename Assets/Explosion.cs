@@ -5,20 +5,9 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
 
-    Animation a;
-
-
-    private void Awake()
-    {
-        a = GetComponent<Animation>();
-    }
-
     // Update is called once per frame
-    void LateUpdate()
+    void EndDestroy()
     {
-        if (!a.isPlaying)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

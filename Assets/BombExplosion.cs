@@ -7,20 +7,26 @@ public class BombExplosion : MonoBehaviour
     // Start is called before the first frame update
 
 
-    public GameObject button;
+    public GameObject[] buttons;
     private bool alreadyActivated = false;
-    public GameObject Explosion;
+    public GameObject explosion;
 
     private void Update()
     {
-        if (!alreadyActivated)
+        int countActivated = 0;
+        foreach (GameObject button in buttons)
         {
             if (button.GetComponent<SwitchActivated>().isSwitchOn)
             {
-                Instantiate(Explosion, transform.position, new Quaternion());
-                alreadyActivated = true;
-                Destroy(gameObject);
+                countActivated++;
             }
+        }
+
+        if (countActivated == buttons.Length)
+        {
+            Instantiate(explosion, transform.position, new Quaternion());
+            alreadyActivated = true;
+            Destroy(gameObject);
         }
         
     }

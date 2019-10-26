@@ -84,7 +84,6 @@ public class Mouvement : MonoBehaviour
         if (Input.GetKey(up) && canClimb)
         {
             isClimbing = true;
-
         }
         else
         {
@@ -107,14 +106,13 @@ public class Mouvement : MonoBehaviour
     {
         if (collision.gameObject.layer == 9)
         {
-
             canClimb = true;
-
         }
-        else
-        {
-            canClimb = false;
-        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        
+        canClimb = false;
     }
 
     private bool IsGrounded()

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4765432666763976897}
   - component: {fileID: 4765432666763976903}
   - component: {fileID: 4959583775715639159}
-  - component: {fileID: 4765432666763976900}
   - component: {fileID: 4765432666763976901}
   - component: {fileID: 2698822006168733692}
   - component: {fileID: 2261589575439798045}
+  - component: {fileID: 1291199500}
   m_Layer: 0
   m_Name: Bouton
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4765432666763976896}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -111,21 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.67504954, y: 0.65150213}
   m_EdgeRadius: 0
---- !u!114 &4765432666763976900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4765432666763976896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4166ebea892e6054b9eb42018ab13d7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  door:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!95 &4765432666763976901
 Animator:
   serializedVersion: 3
@@ -154,7 +139,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 4765432666763976896}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b5fd726eaa67f204abf3c743e96a21ed, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -180,7 +165,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 4765432666763976896}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b5fd726eaa67f204abf3c743e96a21ed, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -197,3 +182,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6718898, y: 0.36721587}
   m_EdgeRadius: 0.03
+--- !u!114 &1291199500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4765432666763976896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e44bae63b4ee945b795de8479d5c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSwitchOn: 0
