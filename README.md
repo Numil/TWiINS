@@ -1,6 +1,6 @@
 # TWIIN
 
-![TWIIN](/LOGO.png)
+![TWIIN](/LOGO Inversé.png)
 **Vous n’êtes peut-être pas celui que vous pensez. Echangez de place avec votre partenaire afin d’arriver au bout de l’aventure.**
 
 # Commandes
