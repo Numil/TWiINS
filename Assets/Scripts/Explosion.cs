@@ -5,7 +5,7 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
 
-    // Update is called once per frame
+    // Destruction à la fin de l'animation
     void EndDestroy()
     {
         Destroy(gameObject);

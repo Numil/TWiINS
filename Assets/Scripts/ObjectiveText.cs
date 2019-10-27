@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Permet l'affichage des textes de début de niveau
 public class ObjectiveText : MonoBehaviour
 {
     GameObject t;
-    // Start is called before the first frame update
     void Awake()
     {
         gameObject.SetActive(true);

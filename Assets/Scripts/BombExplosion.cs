@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BombExplosion : MonoBehaviour
 {
-    // Start is called before the first frame update
-
 
     public GameObject[] buttons;
     public GameObject explosion;
@@ -19,14 +17,16 @@ public class BombExplosion : MonoBehaviour
     private void Update()
     {
         int countActivated = 0;
+        // On compte les boutons actifs
         foreach (GameObject button in buttons)
         {
-            if (button.GetComponent<SwitchActivated>().isSwitchOn)
+            if (button.GetComponent<Buttons>().isSwitchOn)
             {
                 countActivated++;
             }
         }
 
+        // Si tous les boutons sont actifs, on active l'animation d'explosion et on détruit l'objet
         if (countActivated == buttons.Length)
         {
             Instantiate(explosion, transform.position, new Quaternion());
