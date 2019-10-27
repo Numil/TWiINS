@@ -30,7 +30,7 @@ public class Mouvement : MonoBehaviour
     public LayerMask whatIsGround;
     private bool isGrounded;
 
-    public float widthGroundDetector = 0.7f;
+    public float widthGroundDetector;
 
     private float inputVertical;
     public float distance;

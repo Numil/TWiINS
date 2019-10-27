@@ -227,7 +227,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.28}
+  m_Offset: {x: 0, y: 0.28000003}
   serializedVersion: 2
   m_Radius: 0.66
 --- !u!58 &1251376032
@@ -260,6 +260,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swapPlaces: 102
   swapCharacter: 103
-  text: {fileID: 0}
+  text: {fileID: 3029785994932892052, guid: b3ce9c10a3c1d5f49abb0b55c18cf0cb, type: 3}
   canvas: {fileID: 0}
-  isLittle: 0
+  isLittle: 1
