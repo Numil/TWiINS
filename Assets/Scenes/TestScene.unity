@@ -393,10 +393,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1049841590529198468, guid: dccb06560980ffb45b56313d9dc2d9f2,
+    - target: {fileID: 1049841590529198466, guid: dccb06560980ffb45b56313d9dc2d9f2,
         type: 3}
-      propertyPath: m_Name
-      value: PetitePorte
+      propertyPath: buttons.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1049841590529198467, guid: dccb06560980ffb45b56313d9dc2d9f2,
         type: 3}
@@ -453,10 +453,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1049841590529198466, guid: dccb06560980ffb45b56313d9dc2d9f2,
+    - target: {fileID: 1049841590529198468, guid: dccb06560980ffb45b56313d9dc2d9f2,
         type: 3}
-      propertyPath: buttons.Array.data[0]
-      value: 
+      propertyPath: m_Name
+      value: PetitePorte
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dccb06560980ffb45b56313d9dc2d9f2, type: 3}
@@ -904,7 +904,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 444, y: 250}
+  m_AnchoredPosition: {x: 443.43, y: 249.14}
   m_SizeDelta: {x: 888, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &418404700 stripped
