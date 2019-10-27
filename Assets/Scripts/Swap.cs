@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Swap : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class Swap : MonoBehaviour
     private GameObject player2;
     private Mouvement mouvScriptP1;
     private Mouvement mouvScriptP2;
+    private Text shownText = null;
+    public Text text;
+    public Canvas canvas;
+    public bool isLittle;
 
     // On récupère les deux personnages
     void Awake()
@@ -23,15 +28,48 @@ public class Swap : MonoBehaviour
 
     void Update()
     {
-        // On échange les touches pour les deux personnages
-        if (Input.GetKeyDown(swapPlaces))
-        {
-            Vector3 player1Position = new Vector3(player1.transform.position.x, player1.transform.position.y);
-            Vector3 player2Position = new Vector3(player2.transform.position.x, player2.transform.position.y);
+      
+        
+        GameObject playerToCheck;
 
-            player1.transform.position = player2Position;
-            player2.transform.position = player1Position;
+
+        if (player1.GetComponent<Swap>().isLittle)
+        {
+            playerToCheck = player1;
         }
+        else
+        {
+            playerToCheck = player2;
+        }
+
+        //Permet de ne pas swap si le joueur est dans une mauvaise position 
+        //Debug.DrawRay(playerToCheck.transform.position, playerToCheck.transform.up, Color.yellow);
+        RaycastHit2D hit = Physics2D.Raycast(playerToCheck.transform.position, playerToCheck.transform.up, 0.52f);
+        if (hit.collider == null)
+        {
+            if (Input.GetKeyDown(swapPlaces))
+            {
+                Vector3 player1Position = new Vector3(player1.transform.position.x, player1.transform.position.y);
+                Vector3 player2Position = new Vector3(player2.transform.position.x, player2.transform.position.y);
+
+                player1.transform.position = player2Position;
+                player2.transform.position = player1Position;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(swapPlaces))
+            {
+                if (shownText == null)
+                {
+                    shownText = Instantiate(text, new Vector3(playerToCheck.transform.position.x, playerToCheck.transform.position.y + 1f, playerToCheck.transform.position.z), new Quaternion(), canvas.transform);
+                    StartCoroutine(DisableText());
+                }
+            }
+        }
+
+        // On échange les touches pour les deux personnages
+       
         #region Contrôles swap
         if (Input.GetKeyDown(swapCharacter))
         {
@@ -64,5 +102,11 @@ public class Swap : MonoBehaviour
             mouvScriptP2.pName = p1Name;
         }
         #endregion
+    }
+
+    IEnumerator DisableText()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(shownText.gameObject);
     }
 }

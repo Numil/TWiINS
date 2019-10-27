@@ -22,8 +22,6 @@ public class Mouvement : MonoBehaviour
     private AudioSource audioS;
 
     //Timer pour le saut plus permissif
-    float jumpPressedRemember = 0;
-    float jumpPressedRememberTime = 0.1f;
     float groundedRemember = 0;
     float groundedRememberTime = 0.15f;
 
@@ -84,17 +82,15 @@ public class Mouvement : MonoBehaviour
             groundedRemember = groundedRememberTime;
         }
 
-        jumpPressedRemember -= Time.deltaTime;
-        if (Input.GetKey(jump))
-        {
-            jumpPressedRemember = jumpPressedRememberTime;
-        }
+        
 
-        if (jumpPressedRemember > 0 && groundedRemember > 0)
+        if (groundedRemember > 0)
         {
-            groundedRemember = 0;
-            jumpPressedRemember = 0;
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, jumpforce);
+            if (Input.GetKey(jump))
+            {
+                groundedRemember = 0;
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, jumpforce);
+            }
         }
 
         //if (Input.GetKey(jump) && isGrounded)

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2261589575439798045}
   - component: {fileID: 1291199500}
   m_Layer: 0
-  m_Name: Bouton
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,7 +181,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.6718898, y: 0.36721587}
-  m_EdgeRadius: 0.03
+  m_EdgeRadius: 0
 --- !u!114 &1291199500
 MonoBehaviour:
   m_ObjectHideFlags: 0

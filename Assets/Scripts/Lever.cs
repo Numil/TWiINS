@@ -10,6 +10,7 @@ public class Lever : MonoBehaviour
     public Text text;
     private Text shownText = null;
     public bool isActivated;
+    public bool textIsUnder;
     private bool isTriggered;
     private Collider2D colliders;
     private Animator animator;
@@ -41,10 +42,20 @@ public class Lever : MonoBehaviour
         isTriggered = true;
         colliders = collision;
 
+        float hauteur;
+
         // Si le personnage rentre dans la zone de trigger, on active le texte d'aide
         if (shownText == null)
         {
-            shownText = Instantiate(text, new Vector3(transform.position.x, transform.position.y +1, transform.position.z), new Quaternion(), canvas.transform);
+            if(!textIsUnder)
+            {
+                hauteur = 1;
+            }
+            else
+            {
+                hauteur = -1;
+            }
+            shownText = Instantiate(text, new Vector3(transform.position.x, transform.position.y +hauteur, transform.position.z), new Quaternion(), canvas.transform);
         }
     }
 

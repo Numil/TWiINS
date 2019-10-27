@@ -126,7 +126,6 @@ MonoBehaviour:
   left: 276
   right: 275
   up: 273
-  down: 0
   jump: 273
   activate: 274
   groundCheckPoint: {fileID: 7143770367372123588}
@@ -134,8 +133,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1
-  widthGroundDetector: 0.7
-  lever: {fileID: 0}
+  widthGroundDetector: 0.79
   distance: 5
   whatIsLadder:
     serializedVersion: 2

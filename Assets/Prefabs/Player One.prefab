@@ -157,7 +157,6 @@ MonoBehaviour:
   left: 113
   right: 100
   up: 122
-  down: 115
   jump: 122
   activate: 115
   groundCheckPoint: {fileID: 8953119531085034910}
@@ -165,8 +164,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1
-  widthGroundDetector: 0.3
-  lever: {fileID: 0}
+  widthGroundDetector: 0.35
   distance: 5
   whatIsLadder:
     serializedVersion: 2
@@ -262,3 +260,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swapPlaces: 102
   swapCharacter: 103
+  text: {fileID: 0}
+  canvas: {fileID: 0}
+  isLittle: 0

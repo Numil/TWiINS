@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 506220942}
   - component: {fileID: 1605276353473072688}
   m_Layer: 0
-  m_Name: switchGreen
+  m_Name: ButtonGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,4 +194,4 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.6718898, y: 0.36721587}
-  m_EdgeRadius: 0.03
+  m_EdgeRadius: 0
