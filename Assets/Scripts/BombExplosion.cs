@@ -9,6 +9,12 @@ public class BombExplosion : MonoBehaviour
 
     public GameObject[] buttons;
     public GameObject explosion;
+    private AudioSource explosionSound;
+
+    private void Awake()
+    {
+        explosionSound =  explosion.GetComponent<AudioSource>();
+    }
 
     private void Update()
     {

@@ -38,21 +38,29 @@ public class Swap : MonoBehaviour
             KeyCode p1Left = mouvScriptP1.left;
             KeyCode p1Right = mouvScriptP1.right;
             KeyCode p1Jump = mouvScriptP1.jump;
+            KeyCode p1Action = mouvScriptP1.activate;
+            KeyCode p1up = mouvScriptP1.up;
             string p1Name = mouvScriptP1.pName;
 
             KeyCode p2Left = mouvScriptP2.left;
             KeyCode p2Right = mouvScriptP2.right;
             KeyCode p2Jump = mouvScriptP2.jump;
+            KeyCode p2Action = mouvScriptP2.activate;
+            KeyCode p2up = mouvScriptP2.up;
             string p2Name = mouvScriptP2.pName;
 
             mouvScriptP1.left = p2Left;
             mouvScriptP1.right = p2Right;
             mouvScriptP1.jump = p2Jump;
+            mouvScriptP1.activate = p2Action;
+            mouvScriptP1.up = p2up;
             mouvScriptP1.pName = p2Name;
 
             mouvScriptP2.left = p1Left;
             mouvScriptP2.right = p1Right;
             mouvScriptP2.jump = p1Jump;
+            mouvScriptP2.activate = p1Action;
+            mouvScriptP2.up = p1up;
             mouvScriptP2.pName = p1Name;
         }
     }

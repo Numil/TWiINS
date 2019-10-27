@@ -13,10 +13,12 @@ public class Lever : MonoBehaviour
     private bool isTriggered;
     private Collider2D colliders;
     private Animator animator;
+    private AudioSource audioS;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        audioS = GetComponent<AudioSource>();
     }
 
     private void LateUpdate()
@@ -26,6 +28,7 @@ public class Lever : MonoBehaviour
             if (Input.GetKeyDown(colliders.GetComponent<Mouvement>().activate))
             {
                 isActivated = !isActivated;
+                audioS.Play();
                 animator.SetBool("IsLeverOn", isActivated);
             }
         }
