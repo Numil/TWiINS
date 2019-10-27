@@ -10,18 +10,13 @@ public class GroupActivation : MonoBehaviour
     public GameObject GroupWhenOn;
     public GameObject GroupWhenOff;
     public bool onlyOneActivation;
-    // Update is called once per frame
     public bool alreadyActivated;
 
     void Awake()
     {
-
-        if (buttons.Length != 0)
-        {
-            GroupWhenOff.SetActive(false);
-            GroupWhenOn.SetActive(true);
-        }
-
+        // On initie les groupes actifs ou non
+        GroupWhenOff.SetActive(false);
+        GroupWhenOn.SetActive(true);
         alreadyActivated = false;
     }
 
@@ -30,8 +25,11 @@ public class GroupActivation : MonoBehaviour
     {
         int countActivated = 0;
 
+
+        // Si le groupe est en mode une seule activation, on check alors s'il a déjà été activé
         if ((!alreadyActivated && onlyOneActivation) || !onlyOneActivation)
         {
+            // On check l'état du levier afin d'activer les bons groupes
             if (lever != null)
             {
                 if (lever.GetComponent<Lever>().isActivated)
@@ -49,20 +47,28 @@ public class GroupActivation : MonoBehaviour
 
             if (buttons.Length != 0)
             {
-
+                // On compte les boutons actifs
                 foreach (GameObject button in buttons)
                 {
-                    if (button.GetComponent<SwitchActivated>().isSwitchOn)
+                    if (button.GetComponent<Buttons>().isSwitchOn)
                     {
                         countActivated++;
                     }
                 }
+
+                // Si tous les boutons sont actifs on change l'état du groupe
                 if (countActivated == buttons.Length)
                 {
                     alreadyActivated = true;
 
                     GroupWhenOff.SetActive(true);
                     GroupWhenOn.SetActive(false);
+                }
+                else
+                {
+                    GroupWhenOff.SetActive(false);
+                    GroupWhenOn.SetActive(true);
+
                 }
             }
         }

@@ -9,14 +9,23 @@ public class Mouvement : MonoBehaviour
     public float jumpforce;
     public string pName;
 
+    //Touches de mouvement
     public KeyCode left;
     public KeyCode right;
     public KeyCode up;
     public KeyCode jump;
     public KeyCode activate;
 
+    // Récupération des composants
     private Rigidbody2D _rigidbody;
     private Animator _animator;
+    private AudioSource audioS;
+
+    //Timer pour le saut plus permissif
+    float jumpPressedRemember = 0;
+    float jumpPressedRememberTime = 0.1f;
+    float groundedRemember = 0;
+    float groundedRememberTime = 0.15f;
 
     public Transform groundCheckPoint;
     public float groundCheckRadius;
@@ -31,10 +40,8 @@ public class Mouvement : MonoBehaviour
     private bool isClimbing;
     private float gravity;
     private bool canClimb = false;
-    private AudioSource audioS;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
@@ -43,11 +50,13 @@ public class Mouvement : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+        //Ground check
         isGrounded = Physics2D.OverlapBox(groundCheckPoint.position, new Vector2(widthGroundDetector, 0.1f), 0, whatIsGround);
+
+        #region Gauche et Droite
+        // Bouger à gauche et à droite
         if (Input.GetKey(left))
         {
             _rigidbody.velocity = new Vector2(-speed, _rigidbody.velocity.y);
@@ -60,14 +69,41 @@ public class Mouvement : MonoBehaviour
         {
             _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
         }
+        #endregion
+
+        #region Saut
 
 
-        if (Input.GetKey(jump) && isGrounded)
+
+
+        //Permet un "timing de jump" plus permissif
+
+        groundedRemember -= Time.deltaTime;
+        if (isGrounded)
         {
+            groundedRemember = groundedRememberTime;
+        }
+
+        jumpPressedRemember -= Time.deltaTime;
+        if (Input.GetKey(jump))
+        {
+            jumpPressedRemember = jumpPressedRememberTime;
+        }
+
+        if (jumpPressedRemember > 0 && groundedRemember > 0)
+        {
+            groundedRemember = 0;
+            jumpPressedRemember = 0;
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, jumpforce);
         }
 
-        if(_rigidbody.velocity.x < 0)
+        //if (Input.GetKey(jump) && isGrounded)
+        //{
+        //    _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, jumpforce);
+        //}
+        #endregion
+
+        if (_rigidbody.velocity.x < 0)
         {          
             transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
@@ -82,6 +118,9 @@ public class Mouvement : MonoBehaviour
 
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, whatIsLadder);
 
+        #region Grimper à l'échelle
+
+        // Si le joueur peut monter, alors on le fait monter
         if (Input.GetKey(up) && canClimb)
         {
             isClimbing = true;
@@ -101,6 +140,7 @@ public class Mouvement : MonoBehaviour
         {
             _rigidbody.gravityScale = gravity;
         }
+        #endregion
     }
 
     private void OnTriggerStay2D(Collider2D collision)

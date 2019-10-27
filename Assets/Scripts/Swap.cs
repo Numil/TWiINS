@@ -12,8 +12,8 @@ public class Swap : MonoBehaviour
     private Mouvement mouvScriptP1;
     private Mouvement mouvScriptP2;
 
-    // Start is called before the first frame update
-    void Start()
+    // On récupère les deux personnages
+    void Awake()
     {
         player1 = GameObject.Find("Player One");
         player2 = GameObject.Find("Player Two");
@@ -21,9 +21,9 @@ public class Swap : MonoBehaviour
         mouvScriptP2 = player2.GetComponent<Mouvement>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // On échange les touches pour les deux personnages
         if (Input.GetKeyDown(swapPlaces))
         {
             Vector3 player1Position = new Vector3(player1.transform.position.x, player1.transform.position.y);
@@ -32,7 +32,7 @@ public class Swap : MonoBehaviour
             player1.transform.position = player2Position;
             player2.transform.position = player1Position;
         }
-
+        #region Contrôles swap
         if (Input.GetKeyDown(swapCharacter))
         {
             KeyCode p1Left = mouvScriptP1.left;
@@ -63,5 +63,6 @@ public class Swap : MonoBehaviour
             mouvScriptP2.up = p1up;
             mouvScriptP2.pName = p1Name;
         }
+        #endregion
     }
 }

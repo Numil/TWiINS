@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Actions liés au appuis dans le manu
 public class Menu : MonoBehaviour
 {
     public GameObject menu;

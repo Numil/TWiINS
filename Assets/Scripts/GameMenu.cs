@@ -7,18 +7,7 @@ public class GameMenu : MonoBehaviour
 {
     public GameObject gameMenu;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-            
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Activés par les boutons du menu
     public void ShowGameMenu()
     {
         if (gameMenu.activeSelf)

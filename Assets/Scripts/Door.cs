@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorDoubleActivation : MonoBehaviour
+public class Door : MonoBehaviour
 {
-    // Start is called before the first frame update
     public GameObject[] levers;
     public GameObject[] buttons;
     public GameObject[] doorParts;
@@ -31,14 +30,17 @@ public class DoorDoubleActivation : MonoBehaviour
 
         int countActivated = 0;
 
+        // On compte les boutons qui sont actifs
         foreach (GameObject button in buttons)
         {
-            if (button.GetComponent<SwitchActivated>().isSwitchOn)
+            if (button.GetComponent<Buttons>().isSwitchOn)
             {
                 countActivated++;
             }
         }
 
+
+        // On compte les leviers actifs
         foreach (GameObject lever in levers)
         {
             if (lever.GetComponent<Lever>().isActivated)
@@ -47,7 +49,7 @@ public class DoorDoubleActivation : MonoBehaviour
             }
         }
 
-
+        // Si tous les leviers et boutons sont actifs on active les animations
         if ((countActivated == buttons.Length + levers.Length && !oneOrAnother) || (countActivated != 0 && oneOrAnother))
         {
             for (int i = 0; i < doorAnimators.Length; i++)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Permet l'affichage d'aide lorsque le joueur s'approche d'un panneau
 public class InfoSign : MonoBehaviour
 {
 

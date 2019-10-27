@@ -21,10 +21,12 @@ public class Lever : MonoBehaviour
         audioS = GetComponent<AudioSource>();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
+        // On check si le personnage est dans la zone de trigger
         if (isTriggered)
         {
+            // S'il appui on active le levier en changeant la valeur isActivated à True ou False selon l'état précédent
             if (Input.GetKeyDown(colliders.GetComponent<Mouvement>().activate))
             {
                 isActivated = !isActivated;
@@ -38,7 +40,9 @@ public class Lever : MonoBehaviour
     {
         isTriggered = true;
         colliders = collision;
-        if(shownText == null)
+
+        // Si le personnage rentre dans la zone de trigger, on active le texte d'aide
+        if (shownText == null)
         {
             shownText = Instantiate(text, new Vector3(transform.position.x, transform.position.y +1, transform.position.z), new Quaternion(), canvas.transform);
         }
@@ -47,7 +51,9 @@ public class Lever : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         isTriggered = false;
-        if(shownText != null)
+
+        // Si le personnage sort de la zone de trigger, on désactive le texte d'aide
+        if (shownText != null)
         {
             Destroy(shownText.gameObject);
             shownText = null;
