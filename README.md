@@ -12,3 +12,8 @@
 	* Action: Flèche Bas
 
 * **SWAP:**  "E"
+
+# Contributors
+
+* Fornazaric Florian
+* Herth Antony
